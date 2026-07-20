@@ -1,15 +1,14 @@
 id: jcode.lang.java
 name: Java Dev Pack
 publisher: jcode
-version: 0.1.0
+version: 0.1.1
 type: language
-# The Eclipse JDT language server and its JDK install automatically as requirements so the pack
-# works out of the box; java-debug (JDWP) stays suggested — it's a manual, advanced setup rather
-# than a one-shot install.
+# The Eclipse JDT language server installs automatically as a requirement so the pack works out of the
+# box; the JDK and java-debug (JDWP) are suggested — opt-in installs rather than one-shot requirements.
 requires:
-  sdks: [jdk]
   lsps: [jdtls]
 suggests:
+  sdks: [jdk]
   dbg: [java-debug]
 description: Coloring, completions, snippets, and a basic formatter for Java.
 language:
