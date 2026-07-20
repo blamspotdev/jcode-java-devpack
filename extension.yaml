@@ -1,0 +1,146 @@
+id: jcode.lang.java
+name: Java Dev Pack
+publisher: jcode
+version: 0.1.0
+type: language
+# The Eclipse JDT language server and its JDK install automatically as requirements so the pack
+# works out of the box; java-debug (JDWP) stays suggested — it's a manual, advanced setup rather
+# than a one-shot install.
+requires:
+  sdks: [jdk]
+  lsps: [jdtls]
+suggests:
+  dbg: [java-debug]
+description: Coloring, completions, snippets, and a basic formatter for Java.
+language:
+  id: java
+  extensions: [".java"]
+  comment:
+    line: "//"
+    blockStart: "/*"
+    blockEnd: "*/"
+  strings: ["\"", "'"]
+  keywords: [abstract, assert, boolean, break, byte, case, catch, char, class,
+    const, continue, default, do, double, else, enum, extends, final, finally,
+    float, for, goto, if, implements, import, instanceof, int, interface, long,
+    native, new, package, permits, private, protected, public, record, return,
+    sealed, short, static, strictfp, super, switch, synchronized, this, throw,
+    throws, transient, try, var, void, volatile, while, yield, true, false, null]
+  types: [String, Integer, Long, Short, Byte, Double, Float, Boolean, Character,
+    Object, Number, Void, List, ArrayList, LinkedList, Map, HashMap, TreeMap,
+    LinkedHashMap, Set, HashSet, TreeSet, LinkedHashSet, Queue, Deque,
+    ArrayDeque, Collection, Iterable, Iterator, Optional, Stream, IntStream,
+    Collectors, StringBuilder, CharSequence, Comparable, Comparator, Runnable,
+    Callable, Thread, Exception, RuntimeException, IllegalArgumentException,
+    IllegalStateException, NullPointerException, Throwable, Error, Math, System,
+    BigDecimal, BigInteger, LocalDate, LocalDateTime, LocalTime, Instant,
+    Duration, Path, Paths, Files, CompletableFuture, Function, Supplier,
+    Consumer, Predicate, BiFunction]
+  formatter:
+    # No standalone Java formatter ships with the JDK toolchain, so formatting uses the
+    # basic rules; jdtls provides real formatting once the language server is running.
+    indent: 4
+    trimTrailingWhitespace: true
+    insertFinalNewline: true
+  completions:
+    - label: main
+      detail: main entry point
+      insert: "public static void main(String[] args) {\n    $0\n}"
+    - label: sout
+      detail: System.out.println
+      insert: "System.out.println($0);"
+    - label: serr
+      detail: System.err.println
+      insert: "System.err.println($0);"
+    - label: cls
+      detail: Class
+      insert: "public class $1 {\n    $0\n}"
+    - label: iface
+      detail: Interface
+      insert: "public interface $1 {\n    $0\n}"
+    - label: rec
+      detail: Record
+      insert: "public record $1($2) {$0}"
+    - label: enum
+      detail: Enum
+      insert: "public enum $1 {\n    $0\n}"
+    - label: fori
+      detail: indexed for loop
+      insert: "for (int $1 = 0; $1 < $2; $1++) {\n    $0\n}"
+    - label: fore
+      detail: enhanced for loop
+      insert: "for (var $1 : $2) {\n    $0\n}"
+    - label: whl
+      detail: while loop
+      insert: "while ($1) {\n    $0\n}"
+    - label: ifn
+      detail: if block
+      insert: "if ($1) {\n    $0\n}"
+    - label: switch
+      detail: switch expression
+      insert: "switch ($1) {\n    case $2 -> $3;\n    default -> $0;\n}"
+    - label: try
+      detail: try / catch
+      insert: "try {\n    $1\n} catch ($2 e) {\n    $0\n}"
+    - label: tryr
+      detail: try-with-resources
+      insert: "try ($1) {\n    $0\n}"
+    - label: fn
+      detail: Method
+      insert: "public $1 $2($3) {\n    $0\n}"
+  helpers:
+    - title: Getter / setter pair
+      snippet: |
+        public $1 get$2() {
+            return $3;
+        }
+
+        public void set$2($1 value) {
+            this.$3 = value;
+        }
+    - title: Builder-style constructor
+      snippet: |
+        private final $1 $2;
+
+        public $3($1 $2) {
+            this.$2 = $2;
+        }
+    - title: equals / hashCode (Objects)
+      snippet: |
+        @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (!(o instanceof $1 other)) return false;
+            return Objects.equals($2, other.$2);
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash($2);
+        }
+    - title: Stream map + collect
+      snippet: |
+        var $1 = $2.stream()
+                .map($3)
+                .collect(Collectors.toList());
+    - title: Thread with lambda
+      snippet: |
+        Thread $1 = new Thread(() -> {
+            $0
+        });
+        $1.start();
+
+# --- header fields merged from extension.jehm ---
+shortDescription: Coloring, completions, snippets, and a basic formatter for Java.
+minJCodeVersion: 1.3.5
+targetJCodeVersion: 1.3.5
+category: Languages
+subcategory: Java
+images:
+  icon: media/icon.png
+  samples: []
+  walkthrough: []
+entry:
+  manifest: extension.yaml
+  ui: null
+  libs: []
