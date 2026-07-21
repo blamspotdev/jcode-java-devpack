@@ -1,12 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256">
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
-      <stop offset="0" stop-color="#f8981d"/>
-      <stop offset="1" stop-color="#d94f00"/>
-    </linearGradient>
-  </defs>
-  <rect x="16" y="16" width="224" height="224" rx="52" fill="url(#bg)"/>
-  <rect x="16" y="16" width="224" height="224" rx="52" fill="none" stroke="#a33a00" stroke-width="8"/>
-  <text x="128" y="178" font-family="Georgia, 'Times New Roman', serif" font-size="150" font-weight="bold" fill="#ffffff" text-anchor="middle">J</text>
-  <path d="M88 52 c-6 10 6 14 0 24 M112 44 c-6 12 8 16 0 30 M136 52 c-6 10 6 14 0 24" fill="none" stroke="#ffffff" stroke-width="9" stroke-linecap="round" opacity="0.85"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256"><defs><linearGradient id="jsteam" gradientUnits="userSpaceOnUse" x1="118" y1="118" x2="118" y2="28"><stop offset="0" stop-color="#E76F00"/><stop offset="1" stop-color="#EA2D2E"/></linearGradient></defs><g transform="translate(128,128) scale(1.08) translate(-128,-128)"><g fill="none" stroke="url(#jsteam)" stroke-linecap="round" stroke-linejoin="round"><path d="M118,114 C104,98 132,90 120,72 C110,56 128,48 116,32" stroke-width="12"/><path d="M100,116 C88,102 106,96 96,82 C88,70 100,64 94,50" stroke-width="10"/><path d="M136,116 C150,102 130,96 142,82 C152,70 138,64 144,48" stroke-width="10"/></g><path d="M170,134 C205,130 206,170 148,162" fill="none" stroke="#5382A1" stroke-width="15" stroke-linecap="round"/><ellipse cx="120" cy="193" rx="100" ry="15" fill="#3C5A73"/><ellipse cx="120" cy="188" rx="100" ry="15" fill="#7BA7CC"/><ellipse cx="120" cy="188" rx="86" ry="11" fill="#5382A1"/><path d="M62,120 C62,150 74,184 118,184 C162,184 174,150 174,120 A56 13 0 0 0 62 120 Z" fill="#5382A1"/><ellipse cx="118" cy="120" rx="56" ry="13" fill="#7BA7CC"/><ellipse cx="118" cy="119" rx="45" ry="9" fill="#3C5A73"/></g></svg>
