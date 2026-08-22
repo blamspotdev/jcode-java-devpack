@@ -1,16 +1,43 @@
 id: jcode.lang.java
 name: Java Dev Pack
 publisher: jcode
-version: 0.1.2
+version: 0.2.0
 type: language
 # The Eclipse JDT language server installs automatically as a requirement so the pack works out of the
-# box; the JDK and java-debug (JDWP) are suggested — opt-in installs rather than one-shot requirements.
+# box; the JDK and the debug adapter are suggested — opt-in installs rather than one-shot requirements.
 requires:
   lsps: [jdtls]
 suggests:
   sdks: [jdk]
   dbg: [java-debug]
 description: Coloring, completions, snippets, and a basic formatter for Java.
+
+contributes:
+  # JCode is a generic IDE: a JVM debugger belongs to the Java pack, not to everyone's install. The
+  # adapter ships inside this .jext, so installing it is a copy — no download, and it works offline.
+  # `{{extensionDir}}` is this extension's install directory, which JCode substitutes and which is
+  # visible inside the distro because the app's files directory is bound into it.
+  debugEngines:
+    - id: java-debug
+      category: JVM
+      name: Java (JDWP/JDI)
+      description: >-
+        JVM debug adapter (Microsoft java-debug core, DAP over stdio). Breakpoints, stepping, call
+        stack, and variables for javac-compiled Java. Needs a JDK.
+      installCommand: >-
+        set -e; mkdir -p "$HOME/java-dap";
+        cp "{{extensionDir}}/lib/jcode-java-dap.jar" "$HOME/java-dap/jcode-java-dap.jar";
+        jcode_progress 100 'Java debug adapter ready'
+      # `... | head -1` would return head's exit code (0) even when java is missing; check the JVM
+      # with a real exit-code test so a JDK-less environment fails verify honestly.
+      verifyCommand: test -f "$HOME/java-dap/jcode-java-dap.jar" && command -v java >/dev/null 2>&1
+      uninstallCommand: rm -rf "$HOME/java-dap"
+      adapterCommand: java -Djava.net.preferIPv4Stack=true -cp "$HOME/java-dap/jcode-java-dap.jar" dev.blamspot.jcode.javadap.Main
+      transport: stdio
+      debugType: java
+      languageIds: [java]
+      extensions: [".java"]
+      requiredSdks: [jdk]
 language:
   id: java
   extensions: [".java"]

@@ -1,0 +1,9 @@
+# The debug adapter's build output. What ships is the jar it produces -- lib/jcode-java-dap.jar,
+# built before packing (see README) -- not the jar as a checked-in binary.
+lib/
+adapter/build/
+adapter/.gradle/
+
+# Packed extensions are release artefacts, not sources.
+build/
+*.jext
