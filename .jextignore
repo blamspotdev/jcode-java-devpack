@@ -1,0 +1,3 @@
+# The adapter's Gradle module. What ships is the jar it builds -- lib/jcode-java-dap.jar,
+# produced before packing -- not the toolchain that builds it.
+adapter
