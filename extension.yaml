@@ -1,7 +1,7 @@
 id: jcode.lang.java
 name: Java Dev Pack
 publisher: jcode
-version: 0.2.1
+version: 0.2.2
 type: language
 # The Eclipse JDT language server installs automatically as a requirement so the pack works out of the
 # box; the JDK and the debug adapter are suggested — opt-in installs rather than one-shot requirements.
