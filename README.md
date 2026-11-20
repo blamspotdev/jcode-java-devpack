@@ -29,15 +29,17 @@ and it works offline.
 The adapter is Microsoft's [java-debug](https://github.com/microsoft/java-debug) core wrapped in a
 small stdio DAP `Main`; its source is in `adapter/`.
 
-### Building it before you pack
+### How the jar gets into the package
 
-`lib/` is not checked in. Build the jar first, then pack:
+`lib/` is not checked in. `jext pack` runs `npm run build`, and `build.mjs` builds the jar with the
+adapter's own Gradle wrapper and copies it to `lib/` first, so packing is one command, by hand and
+in CI:
 
 ```sh
-cd adapter && gradle shadowJar && cd ..
-mkdir -p lib && cp adapter/build/libs/jcode-java-dap.jar lib/
 jext pack . -o build/plain
 ```
+
+The jar alone is `cd adapter && ./gradlew shadowJar` (→ `adapter/build/libs/jcode-java-dap.jar`).
 
 `.jextignore` keeps `adapter/` out of the package: what ships is the jar, not the toolchain that
 builds it.

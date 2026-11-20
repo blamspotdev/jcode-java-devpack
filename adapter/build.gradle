@@ -1,7 +1,7 @@
 // Standalone Gradle build for the JCode Java debug adapter (stdio DAP server).
-// Requires Gradle 8.x (shadow 8.1.1) and a JDK 17+ to run the build.
+// Built by its own wrapper (Gradle 9.9.2) on a JDK 17+.
 //
-// Build:   gradle shadowJar   (or: gradle build)
+// Build:   ./gradlew shadowJar   (or: ./gradlew build)
 // Output:  build/libs/jcode-java-dap.jar   (Main-Class: dev.blamspot.jcode.javadap.Main)
 // Run:     java -jar build/libs/jcode-java-dap.jar --source-path /abs/src/root
 //          (the DAP client speaks over this process's stdin/stdout)
@@ -9,7 +9,9 @@
 plugins {
     id 'java'
     id 'application'
-    id 'com.github.johnrengelman.shadow' version '8.1.1'
+    // GradleUp's Shadow, the continuation of com.github.johnrengelman.shadow: 8.1.1, that plugin's
+    // last release, does not apply on Gradle 9 ("Could not set unknown property 'fileMode'").
+    id 'com.gradleup.shadow' version '9.6.1'
 }
 
 group = 'dev.blamspot.jcode'

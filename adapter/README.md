@@ -14,12 +14,15 @@ transport analysis.
 
 ## Build (Gradle — canonical)
 
-Requires Gradle 8.x + a JDK 17+:
+Needs a JDK 17+; the wrapper brings Gradle 9.9.2:
 
 ```
-gradle shadowJar
+./gradlew shadowJar
 # → build/libs/jcode-java-dap.jar   (Main-Class: dev.blamspot.jcode.javadap.Main)
 ```
+
+`npm run build` at the repository root runs this and copies the jar to `lib/`, which is what
+`jext pack` packages.
 
 This is a **standalone** Gradle build, intentionally kept out of the Android
 application's build so its Java-17/JDI toolchain can't perturb the app modules.
