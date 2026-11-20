@@ -1,0 +1,8 @@
+{
+  "name": "jcode-java-devpack",
+  "private": true,
+  "description": "Java Dev Pack for JCode — Java language support and the JVM debug adapter it bundles.",
+  "scripts": {
+    "build": "node build.mjs"
+  }
+}
